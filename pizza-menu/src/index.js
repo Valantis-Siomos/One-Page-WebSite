@@ -76,19 +76,18 @@ function Menu() {
     <main className="menu">
       <h2>Our Menu</h2>
       {numPizzas > 0 ? (
-      /* fragment,  some times need <React.Fragment key="anything"></React.Fragment> all this for more than one element in piece of jsx*/
+        /* fragment,  some times need <React.Fragment key="anything"></React.Fragment> all this for more than one element in piece of jsx*/
         <>
-        <p>
-        Authentic Italian cusine. 6creative dishes to chooce from. All from our
-        stone oven, all organic all delicious.
-      </p>
-        <ul className="pizzas">
-          {pizzas.map((pizza) => (
-            <Pizza pizzaObj={pizza} key={pizza.name} />
-          ))}
-        </ul>
+          <p>
+            Authentic Italian cusine. 6creative dishes to chooce from. All from
+            our stone oven, all organic all delicious.
+          </p>
+          <ul className="pizzas">
+            {pizzas.map((pizza) => (
+              <Pizza pizzaObj={pizza} key={pizza.name} />
+            ))}
+          </ul>
         </>
-
       ) : (
         <p>We're still working on our menu. Please come back later</p>
       )}
@@ -112,15 +111,15 @@ function Menu() {
 function Pizza({ pizzaObj }) {
   console.log(pizzaObj);
 
-  if (pizzaObj.soldOut) return null;
+  // if (pizzaObj.soldOut) return null;
 
   return (
-    <li className="pizza">
+    <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
       <img src={pizzaObj.photoName} alt={pizzaObj.name} />
       <div>
         <h3>{pizzaObj.name}</h3>
         <p>{pizzaObj.ingredients}</p>
-        <span>{pizzaObj.price + 3}</span>
+        <span>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price + 3}</span>
       </div>
     </li>
   );
